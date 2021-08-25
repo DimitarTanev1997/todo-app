@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Calendar.module.scss';
+import styles from './Calendar.module.css';
 
 const Calendar = () => {
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

@@ -9,19 +9,6 @@
   width: 100vw;
   height: 100vh;
 
-  section {
-    margin-bottom: 2rem;
-  }
-
-  footer {
-    position: relative;
-    
-    .button {
-      position: fixed;
-      top: 46%;
-      left: 47.5%;
-    }
-  }
 }
 
 footer {

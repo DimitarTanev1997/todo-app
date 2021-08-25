@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CircleButton.module.scss';
+import styles from './CircleButton.module.css';
 
 type AppProps = {
     config: {

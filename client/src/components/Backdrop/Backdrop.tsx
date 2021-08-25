@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Backdrop.module.scss';
+import styles from './Backdrop.module.css';
 
 type AppProps = {
     children: JSX.Element[]

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import IconButton from '../IconButton/IconButton';
-import './Modal.scss';
+import './Modal.css';
 
 type AppProps = {
     onClose: () => void,

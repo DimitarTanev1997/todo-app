@@ -1,4 +1,4 @@
-import './App.scss';
+import './App.css';
 import React, { useState } from 'react';
 import ITodo from './models/Todo.interface';
 import Date from './components/Calendar/Calendar';
