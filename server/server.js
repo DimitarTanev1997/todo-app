@@ -42,10 +42,10 @@ app.use(cors());
 
 // This middleware informs the express application to serve our compiled React files. Remember the course by Tony.
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-    // app.use(express.static(path.join(__dirname, 'client/build')));
+    app.use(express.static(path.join(__dirname, '/../client/build')));
 
     app.get('*', function (req, res) {
-        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+        res.sendFile(path.join(__dirname, '/../client/build', 'index.html'));
     });
 };
 
