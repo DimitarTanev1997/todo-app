@@ -1,0 +1,45 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Todo application created using React, NodeJs, Express, Sequelize and Postgres",
+  "main": "./server/server.js",
+  "engines": {
+    "node": "v12.16.1",
+    "npm": "6.13.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\"",
+    "start": "cd server && node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DimitarTanev1997/todo-app.git"
+  },
+  "author": "Dimitar Tanev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DimitarTanev1997/todo-app/issues"
+  },
+  "homepage": "https://github.com/DimitarTanev1997/todo-app#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "node-sass": "^4.14.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "react-icons": "^4.1.0",
+    "sequelize": "^6.3.5",
+    "validator": "^13.6.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}

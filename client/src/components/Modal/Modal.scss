@@ -1,0 +1,28 @@
+.Backdrop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.Backdrop.Open-true{
+    z-index: 1;
+}
+
+.Modal {
+    border-radius: 13px;
+    width: 85vw;
+    height: 85vh;
+    background-color: green;
+    z-index: 2;
+}
+
+.ModalDeleteButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px; 
+}

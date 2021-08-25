@@ -1,0 +1,49 @@
+.Todo {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    /* box-shadow: 0 2px 8px RGB((var(--black)) / 10%); */
+    border-bottom: 1px solid #e7e3e3;
+    padding: 20px 7px 20px 20px;
+    min-height: 40px;
+    margin: 10px;
+}
+
+.Todo h2 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.Todo p {
+    font-size: 1.15rem;
+    color: var(--text-color-fog-medium);
+}
+
+.TodoContent {
+    margin-left: 20px;
+}
+
+.TodoOptionsButton {
+    margin-left: auto;
+}
+
+.TodoOptionsBar {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background:rgba(255,255,255, 0.9);
+}
+
+.TodoOptionsBar.Open-true {
+    z-index: 1;
+}
+

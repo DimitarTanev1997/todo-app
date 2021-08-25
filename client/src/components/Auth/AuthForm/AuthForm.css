@@ -1,0 +1,29 @@
+.AuthFormContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;    
+}
+
+.AuthForm {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    width: 20rem;
+}
+
+.AuthForm > * {
+    margin-bottom: 1rem;
+}
+
+.AuthForm input {
+    height: 1.5rem;
+}
+
+.AuthForm input:invalid {
+    box-shadow: 0 0 5px 1px red;
+}
+
+.AuthForm .FormMessage {
+    color: red;
+    height: 1rem;
+}

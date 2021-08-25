@@ -1,0 +1,26 @@
+.TodoForm {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    justify-content: flex-start;
+}
+
+.TodoForm > * {
+    margin-bottom: 1rem;
+}
+
+.TodoForm fieldset {
+    display: flex;
+    min-height: 3rem;
+    flex-wrap: wrap;
+}
+
+.TodoForm fieldset > * {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.TodoForm .TodoFormButton {
+    margin-top: 1.5rem;
+    align-self: center;
+}

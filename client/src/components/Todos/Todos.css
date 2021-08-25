@@ -1,0 +1,9 @@
+/* width */
+::-webkit-scrollbar {
+    width: .4rem;
+}
+
+.Todos .TodosList {
+    height: 400px;
+    overflow: scroll;
+}

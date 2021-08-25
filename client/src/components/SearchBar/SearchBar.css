@@ -1,0 +1,14 @@
+.SearchBar input {
+    margin-bottom: 2rem;
+}
+
+.SearchBar ul {
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.SearchBar ul li {
+    margin-right: 1rem;
+}
+  

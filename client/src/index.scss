@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+:root {
+    --app-light-gray: #F0EFE9;
+    --app-green: #2bd485;
+	--text-color: #58595b;
+    --text-color-gray: #2d3137;
+    --text-color-gray-light: #5d5552;
+    --text-color-gray-rgb: 45,49,55;
+    --text-color-light: #757579;
+    --text-color-fog-medium: #929497;
+    --light-gray: #dddfe1;
+}
+
+* {
+	/* font-family: 'Roboto', sans-serif; */
+    font-family: 'Comic Neue', cursive;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--app-light-gray);
+    display: flex;
+    justify-content: center;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+    .flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.IconButton {
+    cursor: pointer;
+    user-select: none;
+    background: none;
+    border: none;
+}
+
+input, textarea, select {
+    background: none;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid black;
+}
