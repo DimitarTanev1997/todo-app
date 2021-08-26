@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
 if (process.env.NODE_ENV === 'production') {
-    sequalize = new Sequelize(process.env.DATABASE_KEY, {
+    sequalize = new Sequelize(process.env.DATABASE_URL, {
         logging: false,
         dialectOptions: {
             ssl: {
