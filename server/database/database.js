@@ -9,7 +9,8 @@ if (process.env.NODE_ENV === 'production') {
                 require: true,
                 rejectUnauthorized: false
             }
-        }
+        },
+        dialect: 'postgres'
     });
 } else {
     sequalize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
