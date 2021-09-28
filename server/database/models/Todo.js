@@ -9,8 +9,8 @@ const Todo = database.define('todo', {
     body: {
         type: Sequelize.STRING
     },
-    dueDate: {
-        type: Sequelize.BOOLEAN
+    due_date: {
+        type: Sequelize.DATE
     },
     createdAt: {
         type: Sequelize.DATE
@@ -27,7 +27,7 @@ const Todo = database.define('todo', {
     section: {
         type: Sequelize.STRING
     },
-    userId: {
+    user_id: {
         type: Sequelize.INTEGER,
         references: {
             model: User,

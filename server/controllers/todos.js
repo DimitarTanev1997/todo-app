@@ -9,7 +9,7 @@ const createTodo = async (req, res) => {
         if (userId) {
             const todo = await Todo.create({
                 ...req.body,
-                userId: userId
+                user_id: userId
             });
             
             res.status(201).send(todo);
@@ -93,7 +93,7 @@ const getAll = async (req, res) => {
         if (userId) {
             const response = await Todo.findAll({
                 where: {
-                    userId: userId,
+                    user_id: userId,
                     ...whereStatement
                 },
                 order: [
