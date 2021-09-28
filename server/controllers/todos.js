@@ -46,6 +46,7 @@ const updateTodo = async (req, res) => {
                 body: req.body.body,
                 completed: req.body.completed,
                 pinned: req.body.pinned,
+                section: req.body.section
             },
             { returning: true, where: { id: todoId } }
         );
