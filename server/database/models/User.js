@@ -14,7 +14,7 @@ const User = database.define('user', {
     }
 });
 
-User.hasMany(Todo, { foreignKey: 'userId'});
+User.hasMany(Todo, { foreignKey: 'user_id'});
 Todo.belongsTo(User, { foreignKey: 'id' });
 
 database.sync();
