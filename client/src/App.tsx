@@ -22,18 +22,23 @@ const App = () => {
         </nav>
         <main>
           <BrowserRouter>
-            <Switch>
-              <Route path="/auth/signin">
-                {isAuthenticated ? <Redirect push to="/" /> : <AuthForm type="signIn" />}
-              </Route>
-              <Route path="/auth/signup">
-                {isAuthenticated ? <Redirect push to="/" /> : <AuthForm type="signUp"/>}
-              </Route>
-            </Switch>
+
+            <Route exact path="/">
+              <AuthForm type="signIn" />
+            </Route>
+            
+            
+            <Route exact path="/auth/signin">
+              {isAuthenticated ? <Redirect push to="/" /> : <AuthForm type="signIn" />}
+            </Route>
+            <Route exact path="/auth/signup">
+              {isAuthenticated ? <Redirect push to="/" /> : <AuthForm type="signUp"/>}
+            </Route>
+
               {isAuthenticated && (
                 <TodosProvider>
                 <Route exact path="/">
-                  {isAuthenticated && <Redirect to="/todos" />}
+                  {isAuthenticated && <Redirect push to="/todos" />}
                 </Route>
                 <Route exact path="/todos">
                   <section>
@@ -59,7 +64,6 @@ const App = () => {
                 <Route path="/todos/:id">
                   <TodoForm type="edit"></TodoForm>
                 </Route>
-
             </Switch>
 
             </TodosProvider>
