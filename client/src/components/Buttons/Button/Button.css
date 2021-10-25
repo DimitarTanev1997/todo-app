@@ -1,0 +1,74 @@
+.link {
+    font-weight: bold;
+}
+
+.button {
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    outline: none;
+}
+
+.button--button, .link--button {
+    cursor: pointer;
+    text-align: center;
+    padding: 0.8rem;
+    width: 374px;
+    max-height: 55.41px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    background: var(--app-black);
+    box-shadow: 5.27062px 5.27062px 2.10825px rgba(0, 0, 0, 0.25);
+    border-radius: 0.6rem;
+}
+
+.button:hover, .link:hover {
+    color: var(--app-light-green);
+}
+
+.button--icon {
+    background-color: transparent;
+    border: none;
+}
+
+.button--spin {
+    position: relative;
+}
+
+.button__text {
+    transition: all 0.2s;
+}
+  
+.button--spin .button__text {
+    visibility: hidden;
+    opacity: 0;
+}
+  
+.button--spin::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: var(--app-light-green);
+    border-radius: 50%;
+    animation: button-loading-spin 1s linear infinite;
+}
+  
+@keyframes button-loading-spin {
+    from {
+        transform: rotate(0turn);
+    }
+  
+    to {
+        transform: rotate(1turn);
+    }
+}
