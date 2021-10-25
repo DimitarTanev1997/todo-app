@@ -1,16 +1,5 @@
-:root {
-  --black: #000000;
-}
-
-.App {
-  align-self: center;
-  background-color: white;
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
-
-}
-
-footer {
-  margin-top: 3rem;
+.button--fixed {
+    position: fixed;
+    bottom: 5%;
+    right: 8%;
 }
