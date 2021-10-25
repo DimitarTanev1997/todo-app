@@ -1,13 +1,4 @@
-import {
-  FaRegWindowClose,
-  FaTrash,
-  FaPen,
-  FaEllipsisV,
-  FaTimes,
-  FaPlusCircle,
-  FaThumbtack,
-} from 'react-icons/fa';
-import { IconContext } from 'react-icons';
+import React from 'react';
 import './IconButton.css';
 
 type AppProps = {
@@ -31,8 +22,9 @@ const IconButton = ({ callback, type, className, color, size }: AppProps) => {
   return (
     <button
       className={`IconButton ${className || ''}`}
+      type="button"
       onClick={callback}
-    ></button>
+    />
   );
 };
 

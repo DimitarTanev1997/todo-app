@@ -1,13 +1,12 @@
 import axios, { AxiosResponse } from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
 import ITodo from '../models/Todo.interface';
-import Todo from '../models/Todo.interface';
 import { FilterType } from '../models/types';
-import { todosReducer } from './reducers';
+import TodosReducer from './reducers';
 import { useAuthContext } from './userState/authContext';
 
 type ContextType = {
-  todos: Todo[];
+  todos: ITodo[];
   addTodo: (todo: ITodo) => void;
   removeTodo: (todoId: number) => void;
   updateTodo: (todo: ITodo) => void;
@@ -21,14 +20,14 @@ type Props = {
 
 const TodosContext = React.createContext<ContextType | undefined>(undefined);
 
-export const TodosProvider = ({ children }: Props) => {
-  const [todosState, dispatch] = useReducer(todosReducer, []);
+const TodosProvider = ({ children }: Props): JSX.Element => {
+  const [todosState, dispatch] = useReducer(TodosReducer, []);
   const { token } = useAuthContext()!;
 
   useEffect(() => {
     axios
       .get('/api/todos', { headers: { Authorization: `Bearer ${token}` } })
-      .then((response: AxiosResponse<Todo[]>) => {
+      .then((response: AxiosResponse<ITodo[]>) => {
         dispatch({ type: 'SET_INITIAL_STATE', initialState: response.data });
       })
       .catch((err) => {
@@ -81,9 +80,7 @@ export const TodosProvider = ({ children }: Props) => {
   ): void => {
     axios
       .get(
-        `/api/todos?${filter ? filter : ''}${
-          filterValue ? `=${filterValue}` : ''
-        }`,
+        `/api/todos?${filter || ''}${filterValue ? `=${filterValue}` : ''}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
       .then((response: AxiosResponse) => {
@@ -109,11 +106,11 @@ export const TodosProvider = ({ children }: Props) => {
     <TodosContext.Provider
       value={{
         todos: todosState,
-        addTodo: addTodo,
-        removeTodo: removeTodo,
-        updateTodo: updateTodo,
-        filterAll: filterAll,
-        getAll: getAll,
+        addTodo,
+        removeTodo,
+        updateTodo,
+        filterAll,
+        getAll,
       }}
     >
       {children}

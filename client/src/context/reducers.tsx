@@ -36,10 +36,7 @@ const setTodos = (newTodos: ITodo[], todos: ITodo[]): ITodo[] => {
   return newTodos;
 };
 
-export const todosReducer = (
-  state: ITodo[],
-  action: ReducerAction
-): ITodo[] => {
+const TodosReducer = (state: ITodo[], action: ReducerAction): ITodo[] => {
   switch (action.type) {
     case 'SET_INITIAL_STATE': {
       return action.initialState;
@@ -65,3 +62,5 @@ export const todosReducer = (
       return state;
   }
 };
+
+export default TodosReducer;

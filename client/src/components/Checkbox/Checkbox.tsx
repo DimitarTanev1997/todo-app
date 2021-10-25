@@ -1,3 +1,4 @@
+import React from 'react';
 import { FaRegCheckCircle, FaRegCircle } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 import './Checkbox.css';
@@ -9,7 +10,7 @@ type AppProps = {
   checked: boolean;
 };
 
-const Checkbox = ({ id, label, callback, checked }: AppProps) => {
+const Checkbox = ({ id, label, callback, checked }: AppProps): JSX.Element => {
   return (
     <IconContext.Provider value={{ color: 'green', size: '1.2em' }}>
       {label && <label htmlFor="id">{label}</label>}
@@ -20,6 +21,7 @@ const Checkbox = ({ id, label, callback, checked }: AppProps) => {
         tabIndex={0}
         onClick={callback}
         className="checkbox"
+        onKeyDown={callback}
       >
         {checked ? <FaRegCheckCircle /> : <FaRegCircle />}
       </div>

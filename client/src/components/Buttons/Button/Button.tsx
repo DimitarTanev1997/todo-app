@@ -24,6 +24,7 @@ type IconStyles =
 
 enum ButtonOptions {
   Button = 'button',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   Link = 'link',
 }
 
@@ -47,7 +48,7 @@ const Button = ({
   styleOption,
   text,
   callback,
-  to,
+  to = '/',
   buttonType,
   spinner,
   iconType,
@@ -55,11 +56,13 @@ const Button = ({
   iconSize,
   disabled,
   className,
-}: ButtonProps) => {
+}: ButtonProps): JSX.Element => {
   const handleClick = (event: SyntheticEvent): void => {
     event.preventDefault();
 
-    callback && callback(event);
+    if (callback) {
+      callback(event);
+    }
   };
 
   const mainClasses = `${typeOption} ${typeOption}--${styleOption} ${className}`;
@@ -78,6 +81,7 @@ const Button = ({
 
   let button = (
     <button
+      // eslint-disable-next-line react/button-has-type
       type={buttonType}
       className={`${mainClasses} ${spinner ? 'button--spin' : ''}`}
       onClick={handleClick}
@@ -93,7 +97,7 @@ const Button = ({
 
   if (typeOption === ButtonOptions.Link) {
     button = (
-      <Link className={`${mainClasses}`} to={to ? to : '/'}>
+      <Link className={`${mainClasses}`} to={to}>
         {styleOption === 'icon' ? icon : `${text}`}
       </Link>
     );

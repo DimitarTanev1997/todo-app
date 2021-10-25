@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuthContext } from '../../../context/userState/authContext';
 import './AuthForm.css';
-import { Link } from 'react-router-dom';
 import { ReactComponent as MainImage } from '../../../assets/main-image.svg';
 import Button from '../../Buttons/Button/Button';
 
@@ -15,7 +15,7 @@ type AuthFormProps = {
   type: 'Create Account' | 'Login';
 };
 
-const AuthForm = ({ type }: AuthFormProps) => {
+const AuthForm = ({ type }: AuthFormProps): JSX.Element => {
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -24,7 +24,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
     password: '',
   });
 
-  const { signIn, signUp, isLoading, hasError } = useAuthContext()!;
+  const { signIn, signUp, isLoading } = useAuthContext()!;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setAuthInfo((prevState) => {
@@ -38,8 +38,6 @@ const AuthForm = ({ type }: AuthFormProps) => {
   const handleFormSubmit = (event: FormEvent): void => {
     event.preventDefault();
 
-    console.log(isLoading);
-
     if (type === 'Login') {
       signIn(authInfo);
     } else if (type === 'Create Account') {
@@ -49,7 +47,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
   return (
     <div className="auth-form">
-      <MainImage></MainImage>
+      <MainImage />
       <form onSubmit={handleFormSubmit}>
         <h2>{type}</h2>
         {type === 'Create Account' && (
@@ -92,7 +90,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
           required
         />
 
-        <span className="FormMessage"></span>
+        <span className="FormMessage" />
         <Button
           typeOption="button"
           styleOption="button"
@@ -101,7 +99,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
           buttonType="submit"
           callback={handleFormSubmit}
           text="Continue"
-        ></Button>
+        />
       </form>
 
       {type === 'Login' ? (

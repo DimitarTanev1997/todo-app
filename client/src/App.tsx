@@ -1,21 +1,17 @@
 import './App.css';
 import React, { useState } from 'react';
-import ITodo from './models/Todo.interface';
-import Date from './components/Calendar/Calendar';
-import IconButton from './components/Buttons/IconButton/IconButton';
+import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 import TodoForm from './components/TodoForm/TodoForm';
 import TodosProvider from './context/globalState';
 import { useAuthContext } from './context/userState/authContext';
 import Todos from './components/Todos/Todos';
 import AuthForm from './components/Auth/AuthForm/AuthForm';
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 import SearchBar from './components/SearchBar/SearchBar';
 import Launch from './components/Launch/Launch';
 import Navigation from './components/Navigation/Navigation';
 import Button from './components/Buttons/Button/Button';
-import { useTransition } from 'react-spring';
 
-const App = () => {
+const App = (): JSX.Element => {
   const { isAuthenticated, signOut } = useAuthContext()!;
   const [isFormOpen, setIsFormOpen] = useState(false);
   // const transition = useTransition(isFormOpen, {
@@ -61,10 +57,10 @@ const App = () => {
                 </section>
 
                 <section>
-                  <Todos></Todos>
+                  <Todos />
                 </section>
 
-                <TodoForm type="create" isOpen={isFormOpen}></TodoForm>
+                <TodoForm type="create" isOpen={isFormOpen} />
                 <Button
                   typeOption="button"
                   styleOption="icon"
@@ -77,11 +73,11 @@ const App = () => {
 
               <Switch>
                 <Route path="/todos/create">
-                  <TodoForm isOpen type="create"></TodoForm>
+                  <TodoForm isOpen type="create" />
                 </Route>
 
                 <Route path="/todos/:id">
-                  <TodoForm isOpen type="edit"></TodoForm>
+                  <TodoForm isOpen type="edit" />
                 </Route>
               </Switch>
             </TodosProvider>

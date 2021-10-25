@@ -29,7 +29,7 @@ type Props = {
 
 const AuthContext = React.createContext<ContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: Props) => {
+export const AuthProvider = ({ children }: Props): JSX.Element => {
   const initialState = {
     user: null,
     token: null,
@@ -38,9 +38,11 @@ export const AuthProvider = ({ children }: Props) => {
     hasError: false,
   };
 
+  const [authState, dispatch] = useReducer(authReducer, initialState);
+
   useEffect(() => {
     const tokenObj = localStorage.getItem('token');
-    let localToken = undefined;
+    let localToken;
 
     if (tokenObj) {
       localToken = JSON.parse(tokenObj);
@@ -60,8 +62,6 @@ export const AuthProvider = ({ children }: Props) => {
     }
   }, []);
 
-  const [authState, dispatch] = useReducer(authReducer, initialState);
-
   const checkToken = (): void => {
     const localeToken = localStorage.getItem('token');
 
@@ -76,11 +76,11 @@ export const AuthProvider = ({ children }: Props) => {
     axios
       .post('/api/auth/signUp', authInfo)
       .then((response: AxiosResponse<{ token: string }>) => {
-        const token = response.data.token;
+        const { token } = response.data;
         const jwtDecoded: JWT | null = decodeToken(token);
-        const user: IUser = jwtDecoded!.user;
+        const { user } = jwtDecoded!;
 
-        dispatch({ type: 'SIGNUP', payload: { user: user, token: token } });
+        dispatch({ type: 'SIGNUP', payload: { user, token } });
         dispatch({ type: 'SET_LOADING' });
 
         // axios.get('/api/auth/verify', { headers: {"Authorization" : `Bearer ${token}`} })
@@ -100,11 +100,11 @@ export const AuthProvider = ({ children }: Props) => {
     axios
       .post('/api/auth/signIn', authInfo)
       .then((response: AxiosResponse<{ token: string }>) => {
-        const token = response.data.token;
+        const { token } = response.data;
         const jwtDecoded: JWT | null = decodeToken(token);
-        const user: IUser = jwtDecoded!.user;
+        const { user } = jwtDecoded!;
 
-        dispatch({ type: 'SIGNIN', payload: { user: user, token: token } });
+        dispatch({ type: 'SIGNIN', payload: { user, token } });
         dispatch({ type: 'SET_LOADING' });
 
         // axios.get('/api/auth/verify', { headers: {"Authorization" : `Bearer ${token}`} })
@@ -115,7 +115,6 @@ export const AuthProvider = ({ children }: Props) => {
         dispatch({ type: 'SET_LOADING' });
         dispatch({ type: 'SET_ERROR' });
         console.log(err);
-        console.log('herrrrr');
       });
   };
 
@@ -131,10 +130,10 @@ export const AuthProvider = ({ children }: Props) => {
         isAuthenticated: authState.isAuthenticated,
         isLoading: authState.isLoading,
         hasError: false,
-        signUp: signUp,
-        signIn: signIn,
-        signOut: signOut,
-        checkToken: checkToken,
+        signUp,
+        signIn,
+        signOut,
+        checkToken,
       }}
     >
       {children}
@@ -142,5 +141,6 @@ export const AuthProvider = ({ children }: Props) => {
   );
 };
 
-export const useAuthContext = () => useContext(AuthContext);
+export const useAuthContext = (): ContextType | undefined =>
+  useContext(AuthContext);
 export default AuthProvider;

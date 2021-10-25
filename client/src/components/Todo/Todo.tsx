@@ -1,17 +1,15 @@
+import React, { useState } from 'react';
 import ITodo from '../../models/Todo.interface';
 import Checkbox from '../Checkbox/Checkbox';
 import './Todo.css';
 import { useTodosContext } from '../../context/globalState';
-import IconButton from '../Buttons/IconButton/IconButton';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Button from '../Buttons/Button/Button';
 
 type AppProps = {
   todo: ITodo;
 };
 
-const Todo = ({ todo }: AppProps) => {
+const Todo = ({ todo }: AppProps): JSX.Element => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   const { removeTodo, updateTodo } = useTodosContext()!;
@@ -47,6 +45,7 @@ const Todo = ({ todo }: AppProps) => {
   };
 
   return (
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <li
       className="todo"
       onMouseOver={handleMouseOver}

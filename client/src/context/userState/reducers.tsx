@@ -14,8 +14,8 @@ const signUp = (user: IUser, token: string, state: AuthState): AuthState => {
 
   return {
     ...state,
-    user: user,
-    token: token,
+    user,
+    token,
     isAuthenticated: true,
   };
 };
@@ -26,8 +26,8 @@ const signIn = (user: IUser, token: string, state: AuthState): AuthState => {
 
   return {
     ...state,
-    user: user,
-    token: token,
+    user,
+    token,
     isAuthenticated: true,
   };
 };

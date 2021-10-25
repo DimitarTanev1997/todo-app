@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ReactComponent as MainImage } from '../../assets/main-image.svg';
 import Button from '../Buttons/Button/Button';
 
-const Launch = () => {
+const Launch = (): JSX.Element => {
   return (
     <section>
-      <MainImage className="svg"></MainImage>
+      <MainImage className="svg" />
       <div>
         <h2>Do It All With Todo Flow</h2>
         <p>A simple Todo Application to help you with your everyday tasks.</p>
@@ -17,13 +16,13 @@ const Launch = () => {
           styleOption="button"
           text="Log In"
           to="/auth/signin"
-        ></Button>
+        />
         <Button
           typeOption="link"
           styleOption="button"
           text="Sign Up"
           to="/auth/signup"
-        ></Button>
+        />
       </div>
     </section>
   );

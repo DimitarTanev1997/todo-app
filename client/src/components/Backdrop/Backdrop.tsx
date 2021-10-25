@@ -2,15 +2,11 @@ import React from 'react';
 import styles from './Backdrop.module.css';
 
 type AppProps = {
-    children: JSX.Element[]
-}
+  children: JSX.Element[];
+};
 
-const Backdrop = ({children}: AppProps) => {
-    return (
-        <div className={styles.Backdrop}>
-            {children}
-        </div>
-    )
-}
+const Backdrop = ({ children }: AppProps) => {
+  return <div className={styles.Backdrop}>{children}</div>;
+};
 
-export default Backdrop
+export default Backdrop;

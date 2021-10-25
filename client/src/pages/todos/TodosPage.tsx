@@ -1,10 +1,10 @@
 import React from 'react';
 import Todos from '../../components/Todos/Todos';
 
-const TodosPage = () => {
+const TodosPage = (): JSX.Element => {
   return (
     <section>
-      <Todos></Todos>
+      <Todos />
     </section>
   );
 };

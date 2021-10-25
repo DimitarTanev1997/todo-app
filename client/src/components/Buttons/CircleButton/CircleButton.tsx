@@ -6,9 +6,9 @@ type AppProps = {
   callback?: () => void;
 };
 
-const CircleButton = ({ text, callback }: AppProps) => {
+const CircleButton = ({ text, callback }: AppProps): JSX.Element => {
   return (
-    <button onClick={callback} className="CircleButton">
+    <button onClick={callback} type="button" className="CircleButton">
       {text}
     </button>
   );

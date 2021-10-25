@@ -1,19 +1,12 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+/* eslint-disable jsx-a11y/no-onchange */
+import React, { FormEvent, useEffect, useRef, useState } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import { useTransition, animated } from 'react-spring';
 import { useTodosContext } from '../../context/globalState';
 import ITodo from '../../models/Todo.interface';
-import CircleButton from '../Buttons/CircleButton/CircleButton';
 import './TodoForm.css';
-import { useParams, useHistory } from 'react-router-dom';
 import RadioButton from '../Checkbox/Checkbox';
-import IconButton from '../Buttons/IconButton/IconButton';
 import Button from '../Buttons/Button/Button';
-import { useTransition, animated } from 'react-spring';
 
 type AppProps = {
   todo?: ITodo;
@@ -25,7 +18,7 @@ type AppParams = {
   id: string;
 };
 
-const TodoForm = ({ todo, type, isOpen }: AppProps) => {
+const TodoForm = ({ todo, type, isOpen }: AppProps): JSX.Element => {
   const transition = useTransition(isOpen, {
     from: {
       x: -100,
@@ -58,15 +51,20 @@ const TodoForm = ({ todo, type, isOpen }: AppProps) => {
     }
   );
 
-  let { id } = useParams<AppParams>();
-  let history = useHistory<History>();
+  const { id } = useParams<AppParams>();
+  const history = useHistory<History>();
 
   useEffect(() => {
     if (type === 'edit') {
       const todo = todos.find((todo) => todo.id === Number(id));
 
-      todo && setFormData(todo);
-      todo?.dueDate && setDueDate(true);
+      if (todo) {
+        setFormData(todo);
+      }
+
+      if (todo?.dueDate) {
+        setDueDate(true);
+      }
     }
   }, []);
 
@@ -76,7 +74,7 @@ const TodoForm = ({ todo, type, isOpen }: AppProps) => {
     >,
     type: 'section' | 'title' | 'body' | 'dueDate'
   ): void => {
-    let value: string | Date = event.currentTarget.value;
+    const { value } = event.currentTarget;
 
     setFormData((prevState) => {
       return {
@@ -146,7 +144,7 @@ const TodoForm = ({ todo, type, isOpen }: AppProps) => {
           handleInputChange(event, 'body')
         }
         value={formData?.body}
-      ></textarea>
+      />
 
       <fieldset>
         <RadioButton
@@ -156,7 +154,7 @@ const TodoForm = ({ todo, type, isOpen }: AppProps) => {
             setDueDate(!dueDate);
           }}
           checked={dueDate}
-        ></RadioButton>
+        />
         {dueDate && (
           <input
             type="date"
@@ -174,7 +172,7 @@ const TodoForm = ({ todo, type, isOpen }: AppProps) => {
         buttonType="submit"
         callback={handleFormSubmit}
         text="Continue"
-      ></Button>
+      />
     </form>
   );
 
@@ -185,7 +183,7 @@ const TodoForm = ({ todo, type, isOpen }: AppProps) => {
           <animated.form
             style={style}
             onSubmit={handleFormSubmit}
-            className={`todo-form`}
+            className="todo-form"
           >
             <select
               value={formData.section}
@@ -215,7 +213,7 @@ const TodoForm = ({ todo, type, isOpen }: AppProps) => {
                 handleInputChange(event, 'body')
               }
               value={formData?.body}
-            ></textarea>
+            />
 
             <fieldset>
               <RadioButton
@@ -225,7 +223,7 @@ const TodoForm = ({ todo, type, isOpen }: AppProps) => {
                   setDueDate(!dueDate);
                 }}
                 checked={dueDate}
-              ></RadioButton>
+              />
               {dueDate && (
                 <input
                   type="date"
@@ -243,7 +241,7 @@ const TodoForm = ({ todo, type, isOpen }: AppProps) => {
               buttonType="submit"
               callback={handleFormSubmit}
               text="Continue"
-            ></Button>
+            />
           </animated.form>
         ) : (
           ''
