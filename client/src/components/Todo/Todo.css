@@ -1,36 +1,32 @@
-.Todo {
+.todo {
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    text-align: left;
-    /* box-shadow: 0 2px 8px RGB((var(--black)) / 10%); */
-    border-bottom: 1px solid #e7e3e3;
-    padding: 20px 7px 20px 20px;
-    min-height: 40px;
-    margin: 10px;
+    background-color: white;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    margin-top: 1rem;
 }
 
-.Todo h2 {
-    font-size: 1.5rem;
-    color: var(--text-color);
+.todo__content h3 {
+    margin: 0 0 0 0.7rem;
 }
 
-.Todo p {
-    font-size: 1.15rem;
-    color: var(--text-color-fog-medium);
+.todo__delete-btn {
+    display: none;
 }
 
-.TodoContent {
-    margin-left: 20px;
+.todo__delete-btn--open {
+    display: block;
+    
 }
 
-.TodoOptionsButton {
+.todoOptionsButton {
     margin-left: auto;
 }
 
-.TodoOptionsBar {
+.todoOptionsBar {
     position: absolute;
     z-index: -1;
     width: 100%;
@@ -43,7 +39,7 @@
     background:rgba(255,255,255, 0.9);
 }
 
-.TodoOptionsBar.Open-true {
+.todoOptionsBar.Open-true {
     z-index: 1;
 }
 

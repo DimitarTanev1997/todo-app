@@ -2,69 +2,87 @@ import ITodo from '../../models/Todo.interface';
 import Checkbox from '../Checkbox/Checkbox';
 import './Todo.css';
 import { useTodosContext } from '../../context/globalState';
-import IconButton from '../IconButton/IconButton';
+import IconButton from '../Buttons/IconButton/IconButton';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Button from '../Buttons/Button/Button';
 
 type AppProps = {
-    todo: ITodo
-}
+  todo: ITodo;
+};
 
 const Todo = ({ todo }: AppProps) => {
-    const [isOptionsBarOpen, setIsOptionsBarOpen] = useState(false);
-    
-    const { removeTodo, updateTodo } = useTodosContext()!;
-    
-    const handleToggle = (): void => {
-        const updatedTodo = {
-            ...todo,
-            completed: !todo.completed
-        };
-        
-        updateTodo(updatedTodo);
-    }
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
-    const handlePin = (): void => {
-        const updatedTodo = {
-            ...todo,
-            pinned: !todo.pinned
-        };
+  const { removeTodo, updateTodo } = useTodosContext()!;
 
-        updateTodo(updatedTodo);
-    }
-
-    const handleDelete = (): void => {
-        removeTodo(todo.id!);
+  const handleToggle = (): void => {
+    const updatedTodo = {
+      ...todo,
+      completed: !todo.completed,
     };
 
-    const handleToggleOptionsBar = (): void => {
-        setIsOptionsBarOpen(!isOptionsBarOpen);
-    }
-    
-    return (
-        <li className="Todo">
-            <Checkbox checked={todo.completed!} callback={handleToggle} />
-            <div
-                className="TodoContent"
-                onClick={handleToggleOptionsBar}
-                onMouseEnter={handleToggleOptionsBar}
-            >
-                <h2 style={{ textDecoration: todo.completed ? 'line-through' : 'initial' }}>{todo.title}</h2>
-                <p>{todo.body}</p>
-            </div>
+    updateTodo(updatedTodo);
+  };
 
-            <IconButton className="TodoOptionsButton" size="1.5em" type="FaThumbtack" callback={handlePin} color={todo.pinned ? 'green' : 'black'} />
-            
-            <div className={`TodoOptionsBar Open-${isOptionsBarOpen}`} onMouseLeave={handleToggleOptionsBar}>
+  const handlePin = (): void => {
+    const updatedTodo = {
+      ...todo,
+      pinned: !todo.pinned,
+    };
+
+    updateTodo(updatedTodo);
+  };
+
+  const handleDelete = (): void => {
+    removeTodo(todo.id!);
+  };
+
+  const handleMouseOver = (): void => {
+    setIsDeleteOpen(true);
+  };
+
+  const handleMouseOut = (): void => {
+    setIsDeleteOpen(false);
+  };
+
+  return (
+    <li
+      className="todo"
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+    >
+      <Checkbox checked={todo.completed!} callback={handleToggle} />
+      <div className="todo__content">
+        <h3
+          style={{
+            textDecoration: todo.completed ? 'line-through' : 'initial',
+          }}
+        >
+          {todo.title}
+        </h3>
+      </div>
+
+      <Button
+        typeOption="button"
+        className={`todo__delete-btn ${
+          isDeleteOpen && 'todo__delete-btn--open'
+        }`}
+        styleOption="icon"
+        iconSize="1.5em"
+        iconType="FaTrash"
+        callback={handleDelete}
+        iconColor="red"
+      />
+
+      {/* <div className={`TodoOptionsBar Open-${isOptionsBarOpen}`} onMouseLeave={handleToggleOptionsBar}>
                 <Link to={`/todos/${todo.id}`}>
                     <IconButton type="FaPen" />
                 </Link>
                 <IconButton type="FaTrash" callback={handleDelete} />
-            </div>
-        </li>
-    )
-}
+            </div> */}
+    </li>
+  );
+};
 
 export default Todo;
-

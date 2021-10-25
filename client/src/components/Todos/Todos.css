@@ -3,7 +3,46 @@
     width: .4rem;
 }
 
-.Todos .TodosList {
-    height: 400px;
+.todos {position: relative;
+border: 1px solid blue;}
+
+  .todos__list--move{
+    
+    transition: all 1s ease-in-out;
+      transform: translate(0, -20px);
+    
+  }
+
+.todos__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     overflow: scroll;
+    position: relative;
+    height: 500px;
+    border: 1px solid red;
 }
+
+/* .todos--completed {
+    border: 1px solid red;
+}
+
+
+.todo--completed{
+    
+    transition: all 1s ease-in-out;
+      transform: translate(0, 350px);
+    
+  }
+
+.todo--uncompleted {
+    transition: all 1s ease-in-out;
+      transform: translate(0, -50px);
+} */
+
+  /* .todo{
+    
+    transition: all 1s ease-in-out;
+      transform: translate(350px, 0);
+    
+  } */
