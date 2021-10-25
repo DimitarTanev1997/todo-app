@@ -2,97 +2,119 @@ import React, { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { useAuthContext } from '../../../context/userState/authContext';
 import './AuthForm.css';
 import { Link } from 'react-router-dom';
+import { ReactComponent as MainImage } from '../../../assets/main-image.svg';
+import Button from '../../Buttons/Button/Button';
 
 type AuthInfo = {
-    username: string;
-    password: string;
-    email?: string;
-}
+  username: string;
+  password: string;
+  email?: string;
+};
 
 type AuthFormProps = {
-    type: 'signUp' | 'signIn'
-}
+  type: 'Create Account' | 'Login';
+};
 
 const AuthForm = ({ type }: AuthFormProps) => {
-    const usernameRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-    const [authInfo, setAuthInfo] = useState<AuthInfo>({
-        username: '',
-        password: ''
+  const [authInfo, setAuthInfo] = useState<AuthInfo>({
+    username: '',
+    password: '',
+  });
+
+  const { signIn, signUp, isLoading, hasError } = useAuthContext()!;
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setAuthInfo((prevState) => {
+      return {
+        ...prevState,
+        [event.target.id]: event.target.value,
+      };
     });
+  };
 
-    const { signIn, signUp, isLoaading, hasError } = useAuthContext()!;
-    
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-        setAuthInfo(prevState => {
-            return {
-                ...prevState,
-                [event.target.id]: event.target.value
+  const handleFormSubmit = (event: FormEvent): void => {
+    event.preventDefault();
+
+    console.log(isLoading);
+
+    if (type === 'Login') {
+      signIn(authInfo);
+    } else if (type === 'Create Account') {
+      signUp(authInfo);
+    }
+  };
+
+  return (
+    <div className="auth-form">
+      <MainImage></MainImage>
+      <form onSubmit={handleFormSubmit}>
+        <h2>{type}</h2>
+        {type === 'Create Account' && (
+          <input
+            ref={usernameRef}
+            id="email"
+            type="email"
+            placeholder="Email..."
+            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              handleInputChange(event)
             }
-        })
-    };
+            value={authInfo.email}
+            disabled={isLoading}
+            required
+          />
+        )}
+        <input
+          ref={usernameRef}
+          id="username"
+          type="text"
+          placeholder="Username..."
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            handleInputChange(event)
+          }
+          value={authInfo.username}
+          disabled={isLoading}
+          required
+        />
 
-    const handleFormSubmit = (event: FormEvent): void => {
-        event.preventDefault();
+        <input
+          ref={passwordRef}
+          id="password"
+          type="password"
+          placeholder="Password..."
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            handleInputChange(event)
+          }
+          value={authInfo.password}
+          disabled={isLoading}
+          required
+        />
 
-        if (type === 'signIn') {
-            signIn(authInfo);
-        } else if (type === 'signUp') {
-            signUp(authInfo);
-        }
-    };
+        <span className="FormMessage"></span>
+        <Button
+          typeOption="button"
+          styleOption="button"
+          spinner={isLoading}
+          disabled={isLoading}
+          buttonType="submit"
+          callback={handleFormSubmit}
+          text="Continue"
+        ></Button>
+      </form>
 
-    return (
-        <div className="AuthFormContainer">
-            <form onSubmit={handleFormSubmit} className="AuthForm">
-            <h1>{type}</h1>
-            {type === 'signUp' && (
-                <input
-                ref={usernameRef}
-                id="email"
-                type="email"
-                placeholder="Email"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => handleInputChange(event)}
-                value={authInfo.email}
-                disabled={isLoaading}
-                required
-            />
-            )}
-            <input
-                ref={usernameRef}
-                id="username"
-                type="text"
-                placeholder="Username"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => handleInputChange(event)}
-                value={authInfo.username}
-                disabled={isLoaading}
-                required
-            />
-
-            <input
-                ref={passwordRef}
-                id="password"
-                type="password"
-                placeholder="Password"
-                onChange={(event: ChangeEvent<HTMLInputElement>) => handleInputChange(event)}
-                value={authInfo.password}
-                disabled={isLoaading}
-                required
-            />
-
-            <span className="FormMessage"></span>
-
-            <button disabled={isLoaading}>{type}</button>
-            </form>
-
-            {type === 'signIn' ?
-                <Link to="/auth/signup">No account? Sign up here.</Link>
-                : 
-                <Link to="/auth/signin">Already have an account? Sign in here.</Link>
-            }
-        </div>
-    )
-}
+      {type === 'Login' ? (
+        <Link to="/auth/signup">
+          No account? <span className="link">Sign up</span>
+        </Link>
+      ) : (
+        <Link to="/auth/signin">
+          Already have an account? <span className="link">Login</span>
+        </Link>
+      )}
+    </div>
+  );
+};
 
 export default AuthForm;

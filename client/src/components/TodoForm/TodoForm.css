@@ -1,26 +1,34 @@
-.TodoForm {
+.todo-form {
+    position: absolute;
+    top: 10%;
+    left: 10%;
     display: flex;
     flex-direction: column;
     padding: 3rem;
     justify-content: flex-start;
+    background-color: wheat;
 }
 
-.TodoForm > * {
+.todo-form--close {
+    display: none;
+}
+
+.todo-form > * {
     margin-bottom: 1rem;
 }
 
-.TodoForm fieldset {
+.todo-form fieldset {
     display: flex;
     min-height: 3rem;
     flex-wrap: wrap;
 }
 
-.TodoForm fieldset > * {
+.todo-form fieldset > * {
     margin-right: 1rem;
     margin-bottom: 1rem;
 }
 
-.TodoForm .TodoFormButton {
+.todo-form .todo-formButton {
     margin-top: 1.5rem;
     align-self: center;
 }
