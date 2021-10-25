@@ -3,6 +3,7 @@ module.exports = {
   root: true, // Make sure eslint picks up the config at the root of the directory
   parserOptions: {
     project:  './tsconfig.json',
+    tsconfigRootDir: __dirname,
     ecmaVersion: 2020, // Use the latest ecmascript standard
     sourceType: 'module', // Allows using import/export statements
     ecmaFeatures: {
