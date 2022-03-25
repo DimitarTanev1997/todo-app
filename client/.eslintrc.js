@@ -21,9 +21,6 @@ module.exports = {
     node: true, // Enables Node.js global variables and Node.js scoping.
   },
   extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
