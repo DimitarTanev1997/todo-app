@@ -30,7 +30,6 @@ module.exports = {
     'plugin:prettier/recommended', // Make this the last element so prettier config overrides other formatting rules
   ],
   rules: {
-    'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     '@typescript-eslint/no-shadow': 'off'
